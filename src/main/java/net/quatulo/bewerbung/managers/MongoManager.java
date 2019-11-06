@@ -31,7 +31,7 @@ public class MongoManager {
 
     public void connect() {
 
-        setMongoClient(MongoClients.create(new ConnectionString("mongodb://" + this.hostname + ":" + this.port)));
+        setMongoClient(MongoClients.create(new ConnectionString("mongodb://" + getHostname() + ":" + getPort())));
         setMongoDatabase(getMongoClient().getDatabase("QuatuloBewerbung"));
         setPlayerCollection(getMongoDatabase().getCollection("players"));
 
@@ -39,7 +39,7 @@ public class MongoManager {
 
     public void connect(String username, String password, String database) {
 
-        setMongoClient(MongoClients.create(new ConnectionString("mongodb://" + username + ":" + password + "@" + this.hostname + ":" + this.port + "/" + database)));
+        setMongoClient(MongoClients.create(new ConnectionString("mongodb://" + username + ":" + password + "@" + getHostname() + ":" + getPort() + "/" + database)));
         setMongoDatabase(getMongoClient().getDatabase("QuatuloBewerbung"));
         setPlayerCollection(getMongoDatabase().getCollection("players"));
 

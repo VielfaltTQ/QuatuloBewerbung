@@ -34,8 +34,6 @@ public class ChatListener implements Listener {
         String playername = proxiedPlayer.getName();
         String uniqueID = proxiedPlayer.getUniqueId().toString();
 
-
-
         if(getInstance().getRedisManager().getJedis().exists("PLAYER_DOCUMENT:" + uniqueID)) {
 
             Document document = Document.parse(getInstance().getRedisManager().getJedis().get("PLAYER_DOCUMENT:" + uniqueID));
