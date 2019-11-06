@@ -18,9 +18,9 @@ public class QuatuloBewerbung  extends Plugin {
         instance = this;
 
         this.mongoManager = new MongoManager(getInstance(), "127.0.0.1", 27017);
-        this.mongoManager.connect("Vielfalt", "k28062001s", "admin");
+        this.mongoManager.connect("## USERNAME ##", "## PASSWORD ##", "admin");
         this.redisManager = new RedisManager(getInstance(), "127.0.0.1", 6379, 5000);
-        this.redisManager.connect("k28062001s");
+        this.redisManager.connect("## PASSWORD ##");
 
         register();
 
