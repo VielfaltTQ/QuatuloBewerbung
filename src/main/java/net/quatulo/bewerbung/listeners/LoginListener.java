@@ -3,6 +3,8 @@ package net.quatulo.bewerbung.listeners;
 import com.mongodb.async.SingleResultCallback;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.result.UpdateResult;
+import lombok.Getter;
+import lombok.Setter;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.event.LoginEvent;
 import net.md_5.bungee.api.plugin.Listener;
@@ -14,14 +16,16 @@ import org.bson.conversions.Bson;
 
 import java.util.Random;
 
+@Getter
+@Setter
 public class LoginListener implements Listener {
 
     private QuatuloBewerbung instance;
 
     public LoginListener(QuatuloBewerbung instance) {
 
-        this.instance = instance;
-        ProxyServer.getInstance().getPluginManager().registerListener(this.instance, this);
+        setInstance(instance);
+        ProxyServer.getInstance().getPluginManager().registerListener(getInstance(), this);
 
     }
 
@@ -67,7 +71,5 @@ public class LoginListener implements Listener {
         });
 
     }
-
-    private QuatuloBewerbung getInstance() { return this.instance; }
 
 }

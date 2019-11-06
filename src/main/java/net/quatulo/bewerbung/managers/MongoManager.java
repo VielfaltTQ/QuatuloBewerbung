@@ -5,9 +5,13 @@ import com.mongodb.async.client.MongoClient;
 import com.mongodb.async.client.MongoClients;
 import com.mongodb.async.client.MongoCollection;
 import com.mongodb.async.client.MongoDatabase;
+import lombok.Getter;
+import lombok.Setter;
 import net.quatulo.bewerbung.QuatuloBewerbung;
 import org.bson.Document;
 
+@Getter
+@Setter
 public class MongoManager {
 
     private QuatuloBewerbung instance;
@@ -19,29 +23,26 @@ public class MongoManager {
 
     public MongoManager(QuatuloBewerbung instance, String hostname, Integer port) {
 
-        this.instance = instance;
-        this.hostname = hostname;
-        this.port = port;
+        setInstance(instance);
+        setHostname(hostname);
+        setPort(port);
 
     }
 
     public void connect() {
 
-        this.mongoClient = MongoClients.create(new ConnectionString("mongodb://" + this.hostname + ":" + this.port));
-        this.mongoDatabase = this.mongoClient.getDatabase("QuatuloBewerbung");
-        this.playerCollection = this.mongoDatabase.getCollection("players");
+        setMongoClient(MongoClients.create(new ConnectionString("mongodb://" + this.hostname + ":" + this.port)));
+        setMongoDatabase(getMongoClient().getDatabase("QuatuloBewerbung"));
+        setPlayerCollection(getMongoDatabase().getCollection("players"));
 
     }
 
     public void connect(String username, String password, String database) {
 
-        this.mongoClient = MongoClients.create(new ConnectionString("mongodb://" + username + ":" + password + "@" + this.hostname + ":" + this.port + "/" + database));
-        this.mongoDatabase = this.mongoClient.getDatabase("QuatuloBewerbung");
-        this.playerCollection = this.mongoDatabase.getCollection("players");
+        setMongoClient(MongoClients.create(new ConnectionString("mongodb://" + username + ":" + password + "@" + this.hostname + ":" + this.port + "/" + database)));
+        setMongoDatabase(getMongoClient().getDatabase("QuatuloBewerbung"));
+        setPlayerCollection(getMongoDatabase().getCollection("players"));
 
     }
-
-    private QuatuloBewerbung getInstance() { return this.instance; }
-    public MongoCollection<Document> getPlayerCollection() { return this.playerCollection; }
 
 }
