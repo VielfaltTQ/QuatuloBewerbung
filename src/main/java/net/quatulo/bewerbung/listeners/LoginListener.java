@@ -1,20 +1,13 @@
 package net.quatulo.bewerbung.listeners;
 
-import com.mongodb.async.SingleResultCallback;
 import com.mongodb.client.model.Filters;
-import com.mongodb.client.result.UpdateResult;
 import lombok.Getter;
 import lombok.Setter;
-import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.event.LoginEvent;
 import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.event.EventHandler;
 import net.quatulo.bewerbung.QuatuloBewerbung;
-import org.bson.BasicBSONObject;
 import org.bson.Document;
-import org.bson.conversions.Bson;
-
-import java.util.Random;
 
 @Getter
 @Setter
@@ -25,7 +18,7 @@ public class LoginListener implements Listener {
     public LoginListener(QuatuloBewerbung instance) {
 
         setInstance(instance);
-        ProxyServer.getInstance().getPluginManager().registerListener(getInstance(), this);
+        getInstance().getProxy().getPluginManager().registerListener(getInstance(), this);
 
     }
 

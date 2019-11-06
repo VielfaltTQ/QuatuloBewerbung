@@ -3,7 +3,6 @@ package net.quatulo.bewerbung.listeners;
 import com.mongodb.client.model.Filters;
 import lombok.Getter;
 import lombok.Setter;
-import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.event.ChatEvent;
 import net.md_5.bungee.api.plugin.Listener;
@@ -21,7 +20,7 @@ public class ChatListener implements Listener {
     public ChatListener(QuatuloBewerbung instance) {
 
         setInstance(instance);
-        ProxyServer.getInstance().getPluginManager().registerListener(getInstance(), this);
+        getInstance().getProxy().getPluginManager().registerListener(getInstance(), this);
 
     }
 
